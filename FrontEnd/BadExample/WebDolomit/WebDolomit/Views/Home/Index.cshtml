@@ -1,0 +1,218 @@
+﻿@model List<WebDolomit.ViewModels.DataViewModel>
+@{
+    ViewBag.Title = "Доломит";
+}
+
+@*@if ((Model != null) && (Model.Count > 0))
+{*@
+    <div>
+        <h3 class="text-center">
+            Обеспечение ОАО Доломит на
+            @ViewBag.Date
+        </h3>
+    </div>
+    <div class="form-group">
+        @if (ViewBag.FullDate == DateTime.Now.Date)
+        {
+            @Html.ActionLink("Предыдущий месяц", "Index", "Home", new { date = DateTime.Now.AddMonths(-1).Date }, new { @class = "btn btn-primary " })
+        }
+        else
+        {
+            @Html.ActionLink("Текущий месяц", "Index", null, new { @class = "btn btn-primary" })
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Добавить данные", "AddData", "Home", null, new { @class = "btn btn-primary " })
+        }
+        @Html.ActionLink("Сохранить", "SaveReport", "Report", new { date = ViewBag.FullDate }, new { @class = "btn btn-primary " })
+    </div>
+    <table class="table-hover table">
+        <tr>
+            <th rowspan="3" class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().Date)
+            </th>
+            <th rowspan="2" colspan="3" class="text-center center-table-name small">
+                ЦС ЦМВ
+            </th>
+            <th colspan="9" class="text-center center-table-name small">
+                ХП
+            </th>
+            <th rowspan="2" colspan="6" class="text-center center-table-name small">
+                ПВ
+            </th>
+            <th rowspan="2" colspan="4" class="text-center center-table-name small">
+                ХП (эксп)
+            </th>
+        </tr>
+        <tr>
+            <th colspan="3" class="text-center center-table-name small">
+                БЧ
+            </th>
+            <th colspan="3" class="text-center center-table-name small">
+                УЗ
+            </th>
+            <th colspan="3" class="text-center center-table-name small">
+                РФ+Лит
+            </th>
+        </tr>
+        <tr>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().CementDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().CementActuallyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().CementDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPBchDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPBchActuallyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPBchDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPUzDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPUzActuallyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPUzDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPRfDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPRfActuallyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPRfDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().PVCoordinatedWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().PVDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().PVLoadedWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().PVDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().PVBalanceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().PVAverageDailyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPCoordinatedWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPLoadedWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPBalanceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.FirstOrDefault().HPAverageDailyWagons)
+            </th>
+        </tr>
+        @for (var item = 0; item < Model.Count; item++)
+        {
+            <tr>
+                <td class="small text-center day">
+                    @Html.DisplayFor(modelItem => Model[item].Date)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].CementDeclaredWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].CementActuallyWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].CementDifferenceWagons)
+                </td>
+
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPBchDeclaredWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPBchActuallyWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPBchDifferenceWagons)
+                </td>
+
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPUzDeclaredWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPUzActuallyWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPUzDifferenceWagons)
+                </td>
+
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPRfDeclaredWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPRfActuallyWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPRfDifferenceWagons)
+                </td>
+
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].PVCoordinatedWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].PVDeclaredWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].PVLoadedWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].PVDifferenceWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].PVBalanceWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].PVAverageDailyWagons)
+                </td>
+
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPCoordinatedWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPLoadedWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPBalanceWagons)
+                </td>
+                <td class="small text-right">
+                    @Html.DisplayFor(modelItem => Model[item].HPAverageDailyWagons)
+                </td>
+                @if (User.Identity.IsAuthenticated && item < Model.Count - 1)
+                {
+                    using (Html.BeginForm("EditDataById", "Home"))
+                    {
+                        @Html.Hidden("id", @Model[item].ID);
+                        <td><button class="btn-change center-block" ><img title="Правка" src="~/Content/icons/icons8-редактировать-26.png"></button></td>
+                    }
+                }
+            </tr>
+        }
+    </table>
+@*}
+else
+{
+    <p>Данные еще не сформированы! Проверьте данные.</p>
+}*@

@@ -1,0 +1,211 @@
+﻿@model WebDolomit.Models.Data
+
+@{
+    ViewBag.Title = "Правка данных на " + @Model.Date.Date.ToString("d MMM yyyy");
+}
+
+<h3>@ViewBag.Title</h3>
+
+@using (Html.BeginForm("EditData", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <table class="table-bordered table">
+        <tr>
+            <th rowspan="2" colspan="3" class="text-center center-table-name small">
+                ЦС ЦМВ
+            </th>
+            <th colspan="9" class="text-center center-table-name small">
+                ХП
+            </th>
+            <th rowspan="2" colspan="6" class="text-center center-table-name small">
+                ПВ
+            </th>
+            <th rowspan="2" colspan="4" class="text-center center-table-name small">
+                ХП (эксп)
+            </th>
+        </tr>
+        <tr>
+            <th colspan="3" class="text-center center-table-name small">
+                БЧ
+            </th>
+            <th colspan="3" class="text-center center-table-name small">
+                УЗ
+            </th>
+            <th colspan="3" class="text-center center-table-name small">
+                РФ+Лит
+            </th>
+        </tr>
+        <tr>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.CementDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.CementActuallyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.CementDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPBchDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPBchActuallyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPBchDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPUzDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPUzActuallyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPUzDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPRfDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPRfActuallyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPRfDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.PVCoordinatedWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.PVDeclaredWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.PVLoadedWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.PVDifferenceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.PVBalanceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.PVAverageDailyWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPCoordinatedWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPLoadedWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPBalanceWagons)
+            </th>
+            <th class="text-center center-table-name small">
+                @Html.DisplayNameFor(modelItem => Model.HPAverageDailyWagons)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.HiddenFor(model => model.Date)
+                @Html.HiddenFor(model => model.ID)
+
+                @Html.TextBoxFor(model => model.CementDeclaredWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.CementDeclaredWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.CementActuallyWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.CementActuallyWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.CementDifferenceWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.CementDifferenceWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPBchDeclaredWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPBchDeclaredWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPBchActuallyWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPBchActuallyWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPBchDifferenceWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPBchDifferenceWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPUzDeclaredWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPUzDeclaredWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPUzActuallyWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPUzActuallyWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPUzDifferenceWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPUzDifferenceWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPRfDeclaredWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPRfDeclaredWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPRfActuallyWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPRfActuallyWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPRfDifferenceWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPRfDifferenceWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.PVCoordinatedWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.PVCoordinatedWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.PVDeclaredWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.PVDeclaredWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.PVLoadedWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.PVLoadedWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.PVDifferenceWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.PVDifferenceWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.PVBalanceWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.PVBalanceWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.PVAverageDailyWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.PVAverageDailyWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPCoordinatedWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPCoordinatedWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPLoadedWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPLoadedWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPBalanceWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPBalanceWagons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.HPAverageDailyWagons, new { style = "width: 45px; height:25px;" })
+                @Html.ValidationMessageFor(model => model.HPAverageDailyWagons, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <div>
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Вернуться назад", "Index", null, new { @class = "btn btn-primary " })
+</div>
